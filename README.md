@@ -1,2 +1,1 @@
-# Pricestoday-hub
-PricesToday Hub – Live prices of materials, metals, currencies, crypto
+Update README with full project description
