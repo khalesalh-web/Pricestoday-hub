@@ -52,7 +52,41 @@
                 el.textContent = el.getAttribute(`data-${lang}`);
             });
         }
-    </script>
+    </script> 
+    
+    <script>
+const fiatList = document.getElementById("fiatList");
+
+// قائمة العملات اللي نحب نعرضها
+const currencies = ["USD","EUR","GBP","JPY","CAD","AUD","CNY","CHF"];
+
+// دالة لجلب الأسعار من API
+async function fetchFiatPrices() {
+    try {
+        const res = await fetch(`https://api.exchangerate.host/latest?base=USD`);
+        const data = await res.json();
+
+        fiatList.innerHTML = ""; // تنظيف القسم قبل العرض
+
+        currencies.forEach(code => {
+            const price = data.rates[code].toFixed(4);
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `<h3>${code}</h3><p>1 USD = ${price} ${code}</p>`;
+            fiatList.appendChild(card);
+        });
+    } catch (error) {
+        fiatList.innerHTML = "<p>Failed to load data</p>";
+        console.error(error);
+    }
+}
+
+// أول مرة تحميل
+fetchFiatPrices();
+
+// تحديث كل دقيقة (60000 مللي ثانية)
+setInterval(fetchFiatPrices, 60000);
+</script>
 
 </body>
 </html>
