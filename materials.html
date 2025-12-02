@@ -30,9 +30,9 @@
             List of materials: Wheat, Sugar, Coffee, Corn, Soy, Cotton, Crude Oil, Natural Gas...
         </p>
 
-        <section class="list-grid">
-            <div class="card">Loading…</div>
-        </section>
+         <section class="list-grid" id="materialsList">
+    <!-- سيتم ملء المواد الأولية تلقائيًا هنا -->
+</section>
 
         <footer class="footer">
             <p>© PricesToday Hub</p>
@@ -51,6 +51,37 @@
             });
         }
     </script>
+     
+ <script>
+const materialsList = document.getElementById("materialsList");
 
+// قائمة المواد الأولية اللي نحب نعرضها
+const materials = ["Wheat","Sugar","Coffee","Corn","Soy","Cotton","Crude Oil","Natural Gas"];
+
+// دالة لجلب الأسعار (مثال تجريبي باستخدام أسعار افتراضية)
+// لاحقًا يمكن ربط API حقيقية
+async function fetchMaterialPrices() {
+    try {
+        materialsList.innerHTML = ""; // تنظيف القسم قبل العرض
+
+        materials.forEach(name => {
+            const price = (Math.random()*100).toFixed(2); // سعر تجريبي
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `<h3>${name}</h3><p>Price: $${price}</p>`;
+            materialsList.appendChild(card);
+        });
+    } catch (error) {
+        materialsList.innerHTML = "<p>Failed to load data</p>";
+        console.error(error);
+    }
+}
+
+// أول مرة تحميل
+fetchMaterialPrices();
+
+// تحديث كل دقيقة
+setInterval(fetchMaterialPrices, 60000);
+</script>
 </body>
 </html>
