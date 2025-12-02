@@ -30,10 +30,18 @@
             Convert between currencies, crypto, metals, and raw materials automatically.
         </p>
 
-        <section class="list-grid">
-            <div class="card">Loading…</div>
-        </section>
-
+        <section class="container" id="converterSection">
+    <h3>Converter</h3>
+    <label>From:</label>
+    <select id="fromCurrency"></select>
+    <label>To:</label>
+    <select id="toCurrency"></select>
+    <label>Amount:</label>
+    <input type="number" id="amount" value="1">
+    <button id="convertBtn">Convert</button>
+    <p id="result">Result will appear here</p>
+</section>
+ 
         <footer class="footer">
             <p>© PricesToday Hub</p>
         </footer>
