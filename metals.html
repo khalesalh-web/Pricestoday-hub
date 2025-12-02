@@ -30,9 +30,9 @@
             Gold, Silver, Platinum, Copper, Oil, Gas...
         </p>
 
-        <section class="list-grid">
-            <div class="card">Loading…</div>
-        </section>
+          <section class="list-grid" id="metalsList">
+    <!-- سيتم ملء المعادن تلقائيًا هنا -->
+</section> 
 
         <footer class="footer">
             <p>© PricesToday Hub</p>
@@ -50,7 +50,37 @@
                 el.textContent = el.getAttribute(`data-${lang}`);
             });
         }
-    </script>
+    </script> 
+     
+ <script>
+const metalsList = document.getElementById("metalsList");
 
+// قائمة المعادن والمواد الطاقية
+const metals = ["Gold","Silver","Platinum","Copper","Oil","Natural Gas"];
+
+// دالة لجلب الأسعار (مثال تجريبي باستخدام أسعار افتراضية)
+async function fetchMetalPrices() {
+    try {
+        metalsList.innerHTML = ""; // تنظيف القسم قبل العرض
+
+        metals.forEach(name => {
+            const price = (Math.random()*2000).toFixed(2); // سعر تجريبي
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `<h3>${name}</h3><p>Price: $${price}</p>`;
+            metalsList.appendChild(card);
+        });
+    } catch (error) {
+        metalsList.innerHTML = "<p>Failed to load data</p>";
+        console.error(error);
+    }
+}
+
+// أول مرة تحميل
+fetchMetalPrices();
+
+// تحديث كل دقيقة
+setInterval(fetchMetalPrices, 60000);
+</script>
 </body>
 </html>
