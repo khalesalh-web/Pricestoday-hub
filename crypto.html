@@ -30,9 +30,9 @@
             Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana...
         </p>
 
-        <section class="list-grid">
-            <div class="card">Loading…</div>
-        </section>
+         <section class="list-grid" id="cryptoList">
+    <!-- سيتم ملء العملات الرقمية تلقائيًا هنا -->
+</section>
 
         <footer class="footer">
             <p>© PricesToday Hub</p>
@@ -51,6 +51,38 @@
             });
         }
     </script>
+    <script>
+const cryptoList = document.getElementById("cryptoList");
 
+// العملات الرقمية اللي نحب نعرضوها
+const cryptos = ["bitcoin", "ethereum", "binancecoin", "cardano", "solana"];
+
+// دالة لجلب الأسعار من CoinGecko API
+async function fetchCryptoPrices() {
+    try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptos.join(",")}&vs_currencies=usd`);
+        const data = await res.json();
+
+        cryptoList.innerHTML = ""; // تنظيف القسم قبل العرض
+
+        cryptos.forEach(id => {
+            const price = data[id].usd.toFixed(2);
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `<h3>${id.charAt(0).toUpperCase() + id.slice(1)}</h3><p>USD ${price}</p>`;
+            cryptoList.appendChild(card);
+        });
+    } catch (error) {
+        cryptoList.innerHTML = "<p>Failed to load data</p>";
+        console.error(error);
+    }
+}
+
+// أول مرة تحميل
+fetchCryptoPrices();
+
+// تحديث كل دقيقة
+setInterval(fetchCryptoPrices, 60000);
+</script>
 </body>
 </html>
