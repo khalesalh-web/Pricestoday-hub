@@ -1,4 +1,30 @@
-PricesToday Hub
+
+ # PricesToday Hub
+
+Welcome to **PricesToday Hub** – a comprehensive website that shows live prices for currencies, cryptocurrencies, metals, and raw materials.
+
+Pages:
+
+- Home: index.html
+- Raw Materials: materials.html (Wheat, Sugar, Coffee, Corn, Soy, Cotton, Oil, Natural Gas)
+- Metals: metals.html (Gold, Silver, Platinum, Copper, Oil, Natural Gas)
+- Fiat Currencies: fiat.html (updated automatically against USD)
+- Cryptocurrencies: crypto.html (Bitcoin, Ethereum, Binance Coin, Cardano, Solana, updated automatically)
+- Converter: converter.html (convert between currencies, cryptocurrencies, metals, and raw materials)
+
+Features:
+
+- Automatic price updates every minute
+- Bilingual interface: English / Arabic
+- Responsive design for mobile and desktop
+- Raw materials and metals currently have demo prices (can be linked to real APIs later)
+- Real-time prices for cryptocurrencies and fiat currencies from free APIs
+
+Notes:
+
+- You can try the converter to convert any currency, metal, or raw material
+- You can add more currencies or materials easily in the
+ PricesToday Hub
 
 مرحبًا بك في PricesToday Hub – موقع شامل يعرض أسعار العملات، العملات الرقمية، المعادن، والمواد الأولية بشكل مباشر.
 
