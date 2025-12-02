@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter — PricesToday Hub</title>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body class="theme-converter">
+
+    <div class="navbar">
+        <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
+
+        <div class="nav-links">
+            <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+            <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
+            <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
+            <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
+            <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
+            <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
+        </div>
+
+        <div class="lang-btn" id="langToggle">AR</div>
+    </div>
+
+    <main class="container">
+        <h2 data-en="Converter" data-ar="المحوّل">Converter</h2>
+        <p data-en="Convert between currencies, crypto, metals, and raw materials automatically."
+           data-ar="تحويل بين العملات، العملات الرقمية، المعادن، والمواد الأولية تلقائيًا.">
+            Convert between currencies, crypto, metals, and raw materials automatically.
+        </p>
+
+        <section class="list-grid">
+            <div class="card">Loading…</div>
+        </section>
+
+        <footer class="footer">
+            <p>© PricesToday Hub</p>
+        </footer>
+    </main>
+
+    <script>
+        const btn = document.getElementById("langToggle");
+        let lang = "en";
+        btn.onclick = () => {
+            lang = lang === "en" ? "ar" : "en";
+            btn.textContent = lang === "en" ? "AR" : "EN";
+            document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+            document.querySelectorAll("[data-en]").forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+            });
+        }
+    </script>
+
+</body>
+</html>
