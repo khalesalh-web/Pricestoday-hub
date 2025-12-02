@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PricesToday Hub</title>
+    <link rel="stylesheet" href="site.css">
+
+    <style>
+        body { margin: 0; background: #0e0e0e; color: white; font-family: Arial, sans-serif; }
+        .navbar { background: #111; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: solid 1px #222; }
+        .logo { font-size: 22px; font-weight: bold; color: #f0c130; }
+        .nav-links a { margin: 0 12px; color: #ccc; text-decoration: none; font-size: 15px; }
+        .nav-links a:hover { color: #f0c130; }
+        .lang-btn { background: #f0c130; padding: 5px 12px; border-radius: 6px; color: black; cursor: pointer; font-weight: bold; }
+        .hero { text-align: center; margin-top: 70px; }
+        .hero h1 { font-size: 34px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; color: #bbb; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
+
+        <div class="nav-links">
+            <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+            <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
+            <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
+            <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
+            <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
+            <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
+        </div>
+
+        <div class="lang-btn" id="langToggle">AR</div>
+    </div>
+
+    <div class="hero">
+        <h1 data-en="Live Prices for Everything" data-ar="الأسعار الحية لكل شيء">Live Prices for Everything</h1>
+        <p data-en="Raw materials, metals, forex, crypto — updated automatically."
+           data-ar="المواد الأولية، المعادن، العملات النقدية والرقمية — تحديث تلقائي.">
+            Raw materials, metals, forex, crypto — updated automatically.
+        </p>
+    </div>
+
+    <script>
+        const btn = document.getElementById("langToggle");
+        let lang = "en"; // default
+
+        btn.onclick = () => {
+            lang = lang === "en" ? "ar" : "en";
+            btn.textContent = lang === "en" ? "AR" : "EN";
+
+            document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+
+            document.querySelectorAll("[data-en]").forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+            });
+        }
+    </script>
+</body>
+</html>
