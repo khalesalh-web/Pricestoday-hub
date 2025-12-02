@@ -59,6 +59,54 @@
             });
         }
     </script>
+     <script>
+// العملات والمواد اللي نريدها للتحويل
+const allCurrencies = ["USD","EUR","GBP","JPY","BTC","ETH","Gold","Silver","Wheat","Sugar"];
+
+// ربط عناصر HTML
+const fromSelect = document.getElementById("fromCurrency");
+const toSelect = document.getElementById("toCurrency");
+const amountInput = document.getElementById("amount");
+const convertBtn = document.getElementById("convertBtn");
+const resultP = document.getElementById("result");
+
+// ملء القوائم
+allCurrencies.forEach(c => {
+    const option1 = document.createElement("option");
+    option1.value = c; option1.textContent = c;
+    fromSelect.appendChild(option1);
+
+    const option2 = document.createElement("option");
+    option2.value = c; option2.textContent = c;
+    toSelect.appendChild(option2);
+});
+
+// دالة تحويل بسيطة تجريبية
+async function convert() {
+    const from = fromSelect.value;
+    const to = toSelect.value;
+    const amount = parseFloat(amountInput.value);
+
+    // تحويل تجريبي: لو العملات نفسها = 1:1
+    let rate = 1;
+
+    // بعض القيم التجريبية (لاحقًا يمكن ربط API حقيقية)
+    const prices = {
+        "USD":1,"EUR":1.1,"GBP":1.25,"JPY":0.009,"BTC":30000,"ETH":2000,
+        "Gold":1800,"Silver":25,"Wheat":5,"Sugar":0.8
+    };
+
+    if(prices[from] && prices[to]){
+        rate = prices[to]/prices[from];
+    }
+
+    const result = (amount*rate).toFixed(4);
+    resultP.textContent = `${amount} ${from} = ${result} ${to}`;
+}
+
+// حدث الضغط على زر التحويل
+convertBtn.addEventListener("click", convert);
+</script>
 
 </body>
 </html>
