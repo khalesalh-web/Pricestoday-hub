@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +45,7 @@
 
     <section id="converterSection">
       <h3 data-en="Converter" data-ar="المحوّل">Converter</h3>
+
       <label data-en="From:" data-ar="من:">From:</label>
       <select id="fromCurrency"></select>
 
@@ -54,7 +56,10 @@
       <input type="number" id="amount" value="1">
 
       <button id="convertBtn" data-en="Convert" data-ar="تحويل">Convert</button>
-      <p id="result" data-en="Result will appear here" data-ar="ستظهر النتيجة هنا">Result will appear here</p>
+
+      <p id="result" data-en="Result will appear here" data-ar="ستظهر النتيجة هنا">
+        Result will appear here
+      </p>
     </section>
   </main>
 
@@ -79,36 +84,45 @@
 
   <!-- Converter script -->
   <script>
-    const allCurrencies = ["USD","EUR","GBP","JPY","BTC","ETH","Gold","Silver","Wheat","Sugar"];
+    const allCurrencies = [
+      "USD","EUR","GBP","JPY",
+      "BTC","ETH",
+      "Gold","Silver",
+      "Wheat","Sugar"
+    ];
+
     const fromSelect = document.getElementById("fromCurrency");
     const toSelect = document.getElementById("toCurrency");
     const amountInput = document.getElementById("amount");
     const convertBtn = document.getElementById("convertBtn");
     const resultP = document.getElementById("result");
 
+    // Fill dropdowns
     allCurrencies.forEach(c => {
-      const option1 = document.createElement("option");
-      option1.value = c; option1.textContent = c;
-      fromSelect.appendChild(option1);
-
-      const option2 = document.createElement("option");
-      option2.value = c; option2.textContent = c;
-      toSelect.appendChild(option2);
+      fromSelect.innerHTML += `<option value="${c}">${c}</option>`;
+      toSelect.innerHTML += `<option value="${c}">${c}</option>`;
     });
 
     async function convert() {
       const from = fromSelect.value;
       const to = toSelect.value;
       const amount = parseFloat(amountInput.value);
+
       const prices = {
-        "USD":1,"EUR":1.1,"GBP":1.25,"JPY":0.009,"BTC":30000,"ETH":2000,
-        "Gold":1800,"Silver":25,"Wheat":5,"Sugar":0.8
+        "USD":1, "EUR":1.1, "GBP":1.25, "JPY":0.009,
+        "BTC":30000, "ETH":2000,
+        "Gold":1800, "Silver":25,
+        "Wheat":5, "Sugar":0.8
       };
-      let rate = 1;
-      if(prices[from] && prices[to]) rate = prices[to]/prices[from];
-      const result = (amount*rate).toFixed(4);
+
+      let rate = prices[to] / prices[from];
+      const result = (amount * rate).toFixed(4);
+
       resultP.textContent = `${amount} ${from} = ${result} ${to}`;
     }
 
     convertBtn.addEventListener("click", convert);
-  </
+  </script>
+
+</body>
+</html>
