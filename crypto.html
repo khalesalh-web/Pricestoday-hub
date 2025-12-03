@@ -94,7 +94,33 @@
 
     fetchCryptoPrices();
     setInterval(fetchCryptoPrices, 60000); // تحديث كل دقيقة
-  </script>
+  </script> 
+  
+ <script>
+const cryptoList = document.getElementById("cryptoList");
+const cryptos = ["bitcoin","ethereum","binancecoin","cardano","solana"];
 
+async function fetchCryptoPrices() {
+  try {
+    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptos.join(",")}&vs_currencies=usd`);
+    const data = await res.json();
+    cryptoList.innerHTML = "";
+
+    cryptos.forEach(id => {
+      const price = data[id].usd.toLocaleString();
+      const card = document.createElement("div");
+      card.className = "card crypto";
+      card.innerHTML = `<h3>${id.charAt(0).toUpperCase() + id.slice(1)}</h3><p>USD ${price}</p>`;
+      cryptoList.appendChild(card);
+    });
+  } catch (error) {
+    cryptoList.innerHTML = "<p>Failed to load data</p>";
+    console.error(error);
+  }
+}
+
+fetchCryptoPrices();
+setInterval(fetchCryptoPrices, 60000); // تحديث كل دقيقة
+</script>
 </body>
 </html>
