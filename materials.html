@@ -43,7 +43,7 @@
     </p>
 
     <section class="list-grid" id="materialsList">
-      <!-- سيتم ملء المواد الأولية تلقائيًا هنا -->
+      <p data-en="Loading prices..." data-ar="جاري تحميل الأسعار...">Loading prices...</p>
     </section>
   </main>
 
@@ -56,6 +56,45 @@
   <script>
     const btn = document.getElementById("langToggle");
     let lang = "en";
+
     btn.onclick = () => {
       lang = lang === "en" ? "ar" : "en";
-      btn.textContent =
+      btn.textContent = lang === "en" ? "AR" : "EN";
+      document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-en]").forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+  </script>
+
+  <!-- Materials Prices script -->
+  <script>
+    const materialsList = document.getElementById("materialsList");
+    const materials = [
+      {name: "Wheat", price: 5},
+      {name: "Sugar", price: 0.8},
+      {name: "Coffee", price: 4.5},
+      {name: "Corn", price: 3.2},
+      {name: "Soy", price: 3.8},
+      {name: "Cotton", price: 1.5},
+      {name: "Crude Oil", price: 70},
+      {name: "Natural Gas", price: 3.5}
+    ];
+
+    function displayMaterials() {
+      materialsList.innerHTML = "";
+      materials.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card material";
+        card.innerHTML = `<h3>${item.name}</h3><p>USD ${item.price.toFixed(2)}</p>`;
+        materialsList.appendChild(card);
+      });
+    }
+
+    displayMaterials();
+    // لو أردت تحديث تلقائي كل دقيقة:
+    setInterval(displayMaterials, 60000);
+  </script>
+
+</body>
+</html>
