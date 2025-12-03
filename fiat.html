@@ -1,98 +1,31 @@
+<section class="list-grid" id="fiatList">
+  <p data-en="Loading prices..." data-ar="جاري تحميل الأسعار...">Loading prices...</p>
+</section>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiat Currencies — PricesToday Hub</title>
-  <meta name="description" content="Live prices for fiat currencies like USD, EUR, GBP, JPY, CAD, AUD, CNY, CHF.">
-  <link rel="icon" href="/favicon.ico">
+<script>
+  const fiatList = document.getElementById("fiatList");
+  const currencies = ["USD","EUR","GBP","JPY","CAD","AUD","CNY","CHF"];
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="PricesToday Hub - Fiat Currencies">
-  <meta property="og:description" content="Live prices for fiat currencies like USD, EUR, GBP, JPY, CAD, AUD, CNY, CHF.">
-  <meta property="og:url" content="https://khalesalh-web.github.io/Pricestoday-hub/fiat.html">
-  <meta property="og:type" content="website">
+  async function fetchFiatPrices() {
+    try {
+      fiatList.innerHTML = `<p data-en="Loading prices..." data-ar="جاري تحميل الأسعار...">Loading prices...</p>`;
+      const res = await fetch(`https://api.exchangerate.host/latest?base=USD`);
+      const data = await res.json();
+      fiatList.innerHTML = "";
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="stylesheet" href="site.css">
-</head>
-<body class="theme-fiat">
-
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
-    <div class="nav-links">
-      <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
-      <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
-      <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
-      <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
-      <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
-      <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
-    </div>
-    <div class="lang-btn" id="langToggle">AR</div>
-  </div>
-
-  <!-- Main content -->
-  <main>
-    <h2 data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat Currencies</h2>
-    <p data-en="USD, EUR, GBP, JPY, CAD, AUD, CNY..."
-       data-ar="الدولار، اليورو، الجنيه الاسترليني، الين، الدولار الكندي، الدولار الأسترالي، اليوان...">
-      USD, EUR, GBP, JPY, CAD, AUD, CNY...
-    </p>
-
-    <section class="list-grid" id="fiatList">
-      <!-- سيتم ملء العملات تلقائيًا هنا -->
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    &copy; 2025 PricesToday Hub — <a href="privacy.html">Privacy</a>
-  </footer>
-
-  <!-- Language toggle script -->
-  <script>
-    const btn = document.getElementById("langToggle");
-    let lang = "en";
-    btn.onclick = () => {
-      lang = lang === "en" ? "ar" : "en";
-      btn.textContent = lang === "en" ? "AR" : "EN";
-      document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
-      document.querySelectorAll("[data-en]").forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
+      currencies.forEach(code => {
+        const price = data.rates[code].toFixed(4);
+        const card = document.createElement("div");
+        card.className = "card fiat";
+        card.innerHTML = `<h3>${code}</h3><p>1 USD = ${price} ${code}</p>`;
+        fiatList.appendChild(card);
       });
+    } catch (error) {
+      fiatList.innerHTML = `<p data-en="Failed to load data" data-ar="فشل تحميل البيانات">Failed to load data</p>`;
+      console.error(error);
     }
-  </script>
+  }
 
-  <!-- Fiat Prices script -->
-  <script>
-    const fiatList = document.getElementById("fiatList");
-    const currencies = ["USD","EUR","GBP","JPY","CAD","AUD","CNY","CHF"];
-
-    async function fetchFiatPrices() {
-      try {
-        const res = await fetch(`https://api.exchangerate.host/latest?base=USD`);
-        const data = await res.json();
-        fiatList.innerHTML = "";
-
-        currencies.forEach(code => {
-          const price = data.rates[code].toFixed(4);
-          const card = document.createElement("div");
-          card.className = "card fiat";
-          card.innerHTML = `<h3>${code}</h3><p>1 USD = ${price} ${code}</p>`;
-          fiatList.appendChild(card);
-        });
-      } catch (error) {
-        fiatList.innerHTML = "<p>Failed to load data</p>";
-        console.error(error);
-      }
-    }
-
-    fetchFiatPrices();
-  </script>
-
-</body>
-</html>
+  fetchFiatPrices();
+  setInterval(fetchFiatPrices, 60000); // تحديث تلقائي كل دقيقة
+</script>
