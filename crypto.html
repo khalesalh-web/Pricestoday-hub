@@ -43,7 +43,7 @@
     </p>
 
     <section class="list-grid" id="cryptoList">
-      <!-- سيتم ملء العملات الرقمية تلقائيًا هنا -->
+      <p data-en="Loading prices..." data-ar="جاري تحميل الأسعار...">Loading prices...</p>
     </section>
   </main>
 
@@ -56,6 +56,7 @@
   <script>
     const btn = document.getElementById("langToggle");
     let lang = "en";
+
     btn.onclick = () => {
       lang = lang === "en" ? "ar" : "en";
       btn.textContent = lang === "en" ? "AR" : "EN";
@@ -69,7 +70,7 @@
   <!-- Crypto Prices script -->
   <script>
     const cryptoList = document.getElementById("cryptoList");
-    const cryptos = ["bitcoin", "ethereum", "binancecoin", "cardano", "solana"];
+    const cryptos = ["bitcoin", "ethereum", "tether", "binancecoin", "cardano", "solana"];
 
     async function fetchCryptoPrices() {
       try {
@@ -81,19 +82,19 @@
           const price = data[id].usd.toFixed(2);
           const card = document.createElement("div");
           card.className = "card crypto";
-          card.innerHTML = `<h3>${id.charAt(0).toUpperCase() + id.slice(1)}</h3><p>USD ${price}</p>`;
+          card.innerHTML = `<h3>${id.charAt(0).toUpperCase() + id.slice(1)}</h3>
+                            <p>USD ${price}</p>`;
           cryptoList.appendChild(card);
         });
       } catch (error) {
-        cryptoList.innerHTML = "<p>Failed to load data</p>";
+        cryptoList.innerHTML = `<p data-en="Failed to load data" data-ar="فشل تحميل البيانات">Failed to load data</p>`;
         console.error(error);
       }
     }
 
     fetchCryptoPrices();
-    setInterval(fetchCryptoPrices, 60000);
+    setInterval(fetchCryptoPrices, 60000); // تحديث كل دقيقة
   </script>
 
 </body>
 </html>
-``
