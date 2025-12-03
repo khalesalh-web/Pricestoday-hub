@@ -95,6 +95,24 @@
     // لو أردت تحديث تلقائي كل دقيقة:
     setInterval(displayMaterials, 60000);
   </script>
+   
+ <script>
+const materialsList = document.getElementById("materialsList");
+const materials = ["Wheat","Sugar","Corn","Coffee"];
 
+async function fetchMaterialPrices() {
+  materialsList.innerHTML = "";
+  materials.forEach(item => {
+    const price = (Math.random()*100).toFixed(2); // مؤقت
+    const card = document.createElement("div");
+    card.className = "card material";
+    card.innerHTML = `<h3>${item}</h3><p>USD ${price}</p>`;
+    materialsList.appendChild(card);
+  });
+}
+
+fetchMaterialPrices();
+setInterval(fetchMaterialPrices, 60000);
+</script>
 </body>
 </html>
