@@ -3,41 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PricesToday Hub — Live raw materials, metals, forex, crypto</title>
-  <meta name="description" content="Live prices for raw materials, metals, forex and crypto — updated automatically. Compare markets and use the converter.">
+  <title>PricesToday Hub — Live Prices</title>
+  <meta name="description" content="Live raw materials, metals, forex, and crypto prices — updated automatically.">
+
   <link rel="icon" href="/favicon.ico">
 
   <!-- Open Graph -->
   <meta property="og:title" content="PricesToday Hub">
-  <meta property="og:description" content="Live prices for raw materials, metals, forex and crypto — updated automatically.">
-  <meta property="og:url" content="https://khalesalh-web.github.io/Pricestoday-hub/">
+  <meta property="og:description" content="Live updated prices for raw materials, metals, forex, and crypto.">
   <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
 
   <!-- CSS خارجي -->
   <link rel="stylesheet" href="site.css">
 
-  <!-- CSS داخلي -->
+  <!-- تحسينات CSS داخلية -->
   <style>
-    /* ====== Base Styles ====== */
     body {
       margin: 0;
-      background: #0e0e0e;
+      background: #0d0d0d;
       color: white;
       font-family: Arial, sans-serif;
       line-height: 1.5;
     }
 
-    /* ====== Navbar ====== */
+    /* ========== NAVBAR ========== */
     .navbar {
       background: #111;
       padding: 15px 20px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       border-bottom: 1px solid #222;
     }
 
@@ -68,11 +64,10 @@
       font-size: 14px;
     }
 
-    /* ====== Hero Section ====== */
+    /* ========== HERO ========== */
     .hero {
       text-align: center;
-      margin-top: 70px;
-      padding: 0 15px;
+      padding: 50px 15px;
     }
 
     .hero h1 {
@@ -85,7 +80,16 @@
       color: #bbb;
     }
 
-    /* ====== Footer ====== */
+    /* ========== DATE & TIME ========== */
+    #datetime {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 17px;
+      color: #f0c130;
+      font-weight: bold;
+    }
+
+    /* ========== FOOTER ========== */
     footer {
       background: #111;
       color: white;
@@ -100,7 +104,7 @@
       text-decoration: none;
     }
 
-    /* ====== Responsive ====== */
+    /* ========== RESPONSIVE ========== */
     @media(min-width: 768px) {
       .hero h1 { font-size: 34px; }
       .hero p { font-size: 18px; }
@@ -113,8 +117,10 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- ====== Navbar ====== -->
+
+  <!-- NAVBAR -->
   <div class="navbar">
     <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
 
@@ -130,24 +136,30 @@
     <div class="lang-btn" id="langToggle">AR</div>
   </div>
 
-  <!-- ====== Hero Section ====== -->
+  <!-- HERO -->
   <div class="hero">
-    <h1 data-en="Live Prices for Everything" data-ar="الأسعار الحية لكل شيء">Live Prices for Everything</h1>
+    <h1 data-en="Live Prices for Everything" data-ar="الأسعار الحية لكل شيء">
+      Live Prices for Everything
+    </h1>
     <p data-en="Raw materials, metals, forex, crypto — updated automatically."
        data-ar="المواد الأولية، المعادن، العملات النقدية والرقمية — تحديث تلقائي.">
       Raw materials, metals, forex, crypto — updated automatically.
     </p>
   </div>
 
-  <!-- ====== Footer ====== -->
+  <!-- DATE & TIME -->
+  <div id="datetime">Loading...</div>
+
+  <!-- FOOTER -->
   <footer>
     &copy; 2025 PricesToday Hub — <a href="privacy.html">Privacy</a>
   </footer>
 
-  <!-- ====== Language Toggle Script ====== -->
+  <!-- LANGUAGE + DATE/TIME SCRIPT -->
   <script>
+    /* ========== LANGUAGE TOGGLE ========== */
     const btn = document.getElementById("langToggle");
-    let lang = "en"; // default
+    let lang = "en";
 
     btn.onclick = () => {
       lang = lang === "en" ? "ar" : "en";
@@ -156,7 +168,22 @@
       document.querySelectorAll("[data-en]").forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
       });
+    };
+
+    /* ========== DATE & TIME AUTO UPDATE ========== */
+    function updateDateTime() {
+      const now = new Date();
+      let time = now.toLocaleTimeString('ar-DZ', { hour12: false });
+      let date = now.toLocaleDateString('ar-DZ');
+
+      document.getElementById("datetime").innerHTML =
+        (lang === "ar" ? "التاريخ: " : "Date: ") + date +
+        (lang === "ar" ? " — الوقت: " : " — Time: ") + time;
     }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
   </script>
+
 </body>
 </html>
