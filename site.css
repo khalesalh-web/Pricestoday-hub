@@ -1,106 +1,99 @@
 /* ====== BASIC RESET ====== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; line-height: 1.5; }
-
-/* ===== NAVBAR ===== */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
-  background: #111;
-  border-bottom: 1px solid #222;
-}
-.navbar .logo { font-size: 22px; font-weight: bold; color: #f0c130; }
-.nav-links a { margin: 0 12px; color: #ccc; text-decoration: none; font-size: 15px; }
-.nav-links a:hover { color: #f0c130; }
-.lang-btn { background: #f0c130; padding: 5px 12px; border-radius: 6px; color: black; cursor: pointer; font-weight: bold; }
-
-/* ===== HERO SECTION ===== */
-.hero { text-align: center; margin-top: 70px; }
-.hero h1 { font-size: 34px; margin-bottom: 10px; color: #fff; }
-.hero p { font-size: 18px; color: #bbb; }
-
-/* ===== CARDS ===== */
-.card { background: #0f1318; padding: 18px; border-radius: 12px; margin: 12px 0; color: #e6e6e6; box-shadow: 0 6px 18px rgba(2,6,23,0.6); }
-.card h3 { margin-bottom: 6px; color: #ffd24a; }
-
-/* ===== SECTIONS GRID ===== */
-.sections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
-
-/* ===== ADS ===== */
-.ad { background: #111; color: #bbb; padding: 14px; border-radius: 10px; text-align: center; margin: 18px 0; }
-
-/* ===== FOOTER ===== */
-.footer { text-align: center; color: #9b9b9b; padding: 24px 0; margin-top: 26px; }
-
-/* ===== PAGE THEMES ===== */
-.theme-earth { background: linear-gradient(180deg,#fbfbf9,#f2efe8); color: #222; }
-.theme-metal { background: #f6f7f9; color: #222; }
-.theme-fiat { background: #ffffff; color: #111; }
-.theme-crypto { background: #0a0b10; color: #eae6ff; }
-.theme-converter { background: #f7fff9; color: #082; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width:700px){
-  .nav-links a{ font-size: 14px; }
-  .navbar{ padding: 10px; }
-  .hero h1{ font-size: 28px; }
-}
-
- /* Reset basic */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-/* Body */
+/* ====== BODY ====== */
 body {
-    background-color: #f5f7fa;
-    color: #333;
+    background-color: #0e0e0e; /* أسود داكن مثل الـ index.html */
+    color: white;
     line-height: 1.6;
-    padding: 20px;
 }
 
-/* Main container */
+/* ====== MAIN CONTAINER ====== */
 main {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 15px;
 }
 
-/* Section headers */
-h3 {
+/* ====== NAVBAR ====== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    background: #111;
+    border-bottom: 1px solid #222;
+}
+.navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f0c130;
+}
+.nav-links a {
+    margin: 5px 12px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+}
+.nav-links a:hover { color: #f0c130; }
+.lang-btn {
+    background: #f0c130;
+    padding: 5px 12px;
+    border-radius: 6px;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ====== HERO SECTION ====== */
+.hero {
+    text-align: center;
+    margin-top: 70px;
+    padding: 0 10px;
+}
+.hero h1 {
+    font-size: 28px;
     margin-bottom: 10px;
-    color: #222;
-    font-size: 1.3rem;
+}
+.hero p {
+    font-size: 16px;
+    color: #bbb;
 }
 
-/* Grid layout for cards */
-.list-grid {
+/* ====== CARDS ====== */
+.card {
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 12px;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+/* Card themes */
+.card.fiat { background-color: #e0f7fa; color: #111; }
+.card.crypto { background-color: #e8f5e9; color: #111; }
+.card.material { background-color: #fff3e0; color: #111; }
+.card.metal { background-color: #f3e5f5; color: #111; }
+
+/* ====== SECTIONS GRID ====== */
+.sections-grid, .list-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
     margin-bottom: 30px;
 }
 
-/* Card style */
-.card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-/* Converter section */
+/* ====== CONVERTER SECTION ====== */
 #converterSection {
     background-color: #fff;
     border-radius: 12px;
@@ -109,33 +102,53 @@ h3 {
     max-width: 500px;
     margin: 0 auto 30px;
 }
-
 #converterSection input, #converterSection select, #converterSection button {
     padding: 8px 10px;
     margin: 5px 0;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
-
 #converterSection button {
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
     border: none;
 }
-
 #converterSection button:hover {
     background-color: #45a049;
 }
 
-/* Responsive */
-@media(max-width: 600px) {
-    .list-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
+/* ====== ADS ====== */
+.ad {
+    background: #111;
+    color: #bbb;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 18px 0;
 }
- /* ألوان مميزة لكل نوع */
-.card.fiat { background-color: #e0f7fa; }       /* العملات النقدية */
-.card.crypto { background-color: #e8f5e9; }    /* العملات الرقمية */
-.card.material { background-color: #fff3e0; }  /* المواد الأولية */
-.card.metal { background-color: #f3e5f5; }     /* المعادن والطاقة */
+
+/* ====== FOOTER ====== */
+.footer {
+    text-align: center;
+    color: #9b9b9b;
+    padding: 24px 0;
+    margin-top: 26px;
+}
+
+/* ====== PAGE THEMES ====== */
+.theme-earth { background: linear-gradient(180deg,#fbfbf9,#f2efe8); color: #222; }
+.theme-metal { background: #f6f7f9; color: #222; }
+.theme-fiat { background: #ffffff; color: #111; }
+.theme-crypto { background: #0a0b10; color: #eae6ff; }
+.theme-converter { background: #f7fff9; color: #082; }
+
+/* ====== RESPONSIVE ====== */
+@media(max-width: 768px) {
+    .nav-links a { font-size: 14px; margin: 3px 8px; }
+    .navbar { padding: 10px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 14px; }
+    main { padding: 10px; }
+    .list-grid, .sections-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+}
