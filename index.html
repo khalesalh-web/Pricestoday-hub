@@ -185,7 +185,22 @@
 
     setInterval(updateDateTime, 1000);
     updateDateTime();
-  </script>
+  </script> 
+  <script>
+  const dateTimeDiv = document.getElementById("dateTime");
+
+  function updateDateTime() {
+    const now = new Date();
+    // صياغة التاريخ والوقت
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const dateStr = now.toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-US', options);
+    const timeStr = now.toLocaleTimeString(lang === 'ar' ? 'ar-EG' : 'en-US');
+    dateTimeDiv.textContent = `${dateStr} - ${timeStr}`;
+  }
+
+  updateDateTime();
+  setInterval(updateDateTime, 1000); // تحديث كل ثانية
+</script>
 
 </body>
 </html>
