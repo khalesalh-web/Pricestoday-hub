@@ -1,4 +1,6 @@
-/* ====== BASIC RESET ====== */
+/* =========================
+    GLOBAL RESET
+========================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,21 +8,27 @@
     font-family: Arial, sans-serif;
 }
 
-/* ====== BODY ====== */
+/* =========================
+    BODY
+========================= */
 body {
-    background-color: #0e0e0e; /* أسود داكن مثل الـ index.html */
+    background-color: #0e0e0e;
     color: white;
     line-height: 1.6;
 }
 
-/* ====== MAIN CONTAINER ====== */
+/* =========================
+    MAIN CONTAINER
+========================= */
 main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
 }
 
-/* ====== NAVBAR ====== */
+/* =========================
+    NAVBAR
+========================= */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -30,18 +38,25 @@ main {
     background: #111;
     border-bottom: 1px solid #222;
 }
+
 .navbar .logo {
     font-size: 22px;
     font-weight: bold;
     color: #f0c130;
 }
+
 .nav-links a {
     margin: 5px 12px;
     color: #ccc;
     text-decoration: none;
     font-size: 15px;
+    transition: 0.2s ease;
 }
-.nav-links a:hover { color: #f0c130; }
+
+.nav-links a:hover {
+    color: #f0c130;
+}
+
 .lang-btn {
     background: #f0c130;
     padding: 5px 12px;
@@ -51,104 +66,152 @@ main {
     font-weight: bold;
 }
 
-/* ====== HERO SECTION ====== */
+/* =========================
+    HERO SECTION
+========================= */
 .hero {
     text-align: center;
     margin-top: 70px;
     padding: 0 10px;
 }
+
 .hero h1 {
     font-size: 28px;
     margin-bottom: 10px;
 }
+
 .hero p {
     font-size: 16px;
     color: #bbb;
 }
 
-/* ====== CARDS ====== */
+/* =========================
+    CARDS
+========================= */
 .card {
     border-radius: 12px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     margin-bottom: 12px;
 }
+
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.35);
 }
-/* Card themes */
+
+/* Themed Cards */
 .card.fiat { background-color: #e0f7fa; color: #111; }
 .card.crypto { background-color: #e8f5e9; color: #111; }
 .card.material { background-color: #fff3e0; color: #111; }
 .card.metal { background-color: #f3e5f5; color: #111; }
 
-/* ====== SECTIONS GRID ====== */
-.sections-grid, .list-grid {
+/* =========================
+    SECTIONS GRID
+========================= */
+.sections-grid,
+.list-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
     margin-bottom: 30px;
 }
 
-/* ====== CONVERTER SECTION ====== */
+/* =========================
+    CONVERTER SECTION
+========================= */
 #converterSection {
     background-color: #fff;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     max-width: 500px;
     margin: 0 auto 30px;
 }
-#converterSection input, #converterSection select, #converterSection button {
+
+#converterSection input,
+#converterSection select,
+#converterSection button {
     padding: 8px 10px;
     margin: 5px 0;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
+
 #converterSection button {
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
     border: none;
+    transition: 0.25s ease;
 }
+
 #converterSection button:hover {
     background-color: #45a049;
 }
 
-/* ====== ADS ====== */
+/* =========================
+    ADS SECTION
+========================= */
 .ad {
-    background: #111;
+    background: #191919;
     color: #bbb;
     padding: 14px;
     border-radius: 10px;
     text-align: center;
     margin: 18px 0;
+    border: 1px solid #222;
 }
 
-/* ====== FOOTER ====== */
+/* =========================
+    FOOTER
+========================= */
 .footer {
     text-align: center;
     color: #9b9b9b;
     padding: 24px 0;
     margin-top: 26px;
+    font-size: 15px;
 }
 
-/* ====== PAGE THEMES ====== */
-.theme-earth { background: linear-gradient(180deg,#fbfbf9,#f2efe8); color: #222; }
+/* =========================
+    PAGE THEMES
+========================= */
+.theme-earth { background: linear-gradient(180deg, #fbfbf9, #f2efe8); color: #222; }
 .theme-metal { background: #f6f7f9; color: #222; }
 .theme-fiat { background: #ffffff; color: #111; }
 .theme-crypto { background: #0a0b10; color: #eae6ff; }
 .theme-converter { background: #f7fff9; color: #082; }
 
-/* ====== RESPONSIVE ====== */
+/* =========================
+    RESPONSIVE
+========================= */
 @media(max-width: 768px) {
-    .nav-links a { font-size: 14px; margin: 3px 8px; }
-    .navbar { padding: 10px; }
-    .hero h1 { font-size: 26px; }
-    .hero p { font-size: 14px; }
-    main { padding: 10px; }
-    .list-grid, .sections-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    .nav-links a {
+        font-size: 14px;
+        margin: 3px 8px;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .list-grid,
+    .sections-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
 }
