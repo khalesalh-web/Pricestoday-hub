@@ -1,88 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptocurrencies — PricesToday Hub</title>
-    <link rel="stylesheet" href="site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptocurrencies — PricesToday Hub</title>
+  <meta name="description" content="Live prices for cryptocurrencies like Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana.">
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PricesToday Hub - Cryptocurrencies">
+  <meta property="og:description" content="Live prices for cryptocurrencies like Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana.">
+  <meta property="og:url" content="https://khalesalh-web.github.io/Pricestoday-hub/crypto.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="site.css">
 </head>
 <body class="theme-crypto">
 
-    <div class="navbar">
-        <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
-
-        <div class="nav-links">
-            <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
-            <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
-            <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
-            <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
-            <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
-            <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
-        </div>
-
-        <div class="lang-btn" id="langToggle">AR</div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
+      <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
+      <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
+      <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
+      <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
     </div>
+    <div class="lang-btn" id="langToggle">AR</div>
+  </div>
 
-    <main class="container">
-        <h2 data-en="Cryptocurrencies" data-ar="العملات الرقمية">Cryptocurrencies</h2>
-        <p data-en="Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana..."
-           data-ar="بيتكوين، إيثيريوم، تيثير، باينانس كوين، كاردانو، سولانا...">
-            Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana...
-        </p>
+  <!-- Main content -->
+  <main>
+    <h2 data-en="Cryptocurrencies" data-ar="العملات الرقمية">Cryptocurrencies</h2>
+    <p data-en="Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana..."
+       data-ar="بيتكوين، إيثيريوم، تيثير، باينانس كوين، كاردانو، سولانا...">
+      Bitcoin, Ethereum, Tether, Binance Coin, Cardano, Solana...
+    </p>
 
-         <section class="list-grid" id="cryptoList">
-    <!-- سيتم ملء العملات الرقمية تلقائيًا هنا -->
-</section>
+    <section class="list-grid" id="cryptoList">
+      <!-- سيتم ملء العملات الرقمية تلقائيًا هنا -->
+    </section>
+  </main>
 
-        <footer class="footer">
-            <p>© PricesToday Hub</p>
-        </footer>
-    </main>
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 PricesToday Hub — <a href="privacy.html">Privacy</a>
+  </footer>
 
-    <script>
-        const btn = document.getElementById("langToggle");
-        let lang = "en";
-        btn.onclick = () => {
-            lang = lang === "en" ? "ar" : "en";
-            btn.textContent = lang === "en" ? "AR" : "EN";
-            document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
-            document.querySelectorAll("[data-en]").forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
-        }
-    </script>
-    <script>
-const cryptoList = document.getElementById("cryptoList");
+  <!-- Language toggle script -->
+  <script>
+    const btn = document.getElementById("langToggle");
+    let lang = "en";
+    btn.onclick = () => {
+      lang = lang === "en" ? "ar" : "en";
+      btn.textContent = lang === "en" ? "AR" : "EN";
+      document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-en]").forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+  </script>
 
-// العملات الرقمية اللي نحب نعرضوها
-const cryptos = ["bitcoin", "ethereum", "binancecoin", "cardano", "solana"];
+  <!-- Crypto Prices script -->
+  <script>
+    const cryptoList = document.getElementById("cryptoList");
+    const cryptos = ["bitcoin", "ethereum", "binancecoin", "cardano", "solana"];
 
-// دالة لجلب الأسعار من CoinGecko API
-async function fetchCryptoPrices() {
-    try {
+    async function fetchCryptoPrices() {
+      try {
         const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptos.join(",")}&vs_currencies=usd`);
         const data = await res.json();
-
-        cryptoList.innerHTML = ""; // تنظيف القسم قبل العرض
+        cryptoList.innerHTML = "";
 
         cryptos.forEach(id => {
-            const price = data[id].usd.toFixed(2);
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `<h3>${id.charAt(0).toUpperCase() + id.slice(1)}</h3><p>USD ${price}</p>`;
-            cryptoList.appendChild(card);
+          const price = data[id].usd.toFixed(2);
+          const card = document.createElement("div");
+          card.className = "card crypto";
+          card.innerHTML = `<h3>${id.charAt(0).toUpperCase() + id.slice(1)}</h3><p>USD ${price}</p>`;
+          cryptoList.appendChild(card);
         });
-    } catch (error) {
+      } catch (error) {
         cryptoList.innerHTML = "<p>Failed to load data</p>";
         console.error(error);
+      }
     }
-}
 
-// أول مرة تحميل
-fetchCryptoPrices();
+    fetchCryptoPrices();
+    setInterval(fetchCryptoPrices, 60000);
+  </script>
 
-// تحديث كل دقيقة
-setInterval(fetchCryptoPrices, 60000);
-</script>
 </body>
 </html>
+``
