@@ -43,7 +43,7 @@
     </p>
 
     <section class="list-grid" id="metalsList">
-      <!-- سيتم ملء المعادن تلقائيًا هنا -->
+      <p data-en="Loading prices..." data-ar="جاري تحميل الأسعار...">Loading prices...</p>
     </section>
   </main>
 
@@ -56,6 +56,7 @@
   <script>
     const btn = document.getElementById("langToggle");
     let lang = "en";
+
     btn.onclick = () => {
       lang = lang === "en" ? "ar" : "en";
       btn.textContent = lang === "en" ? "AR" : "EN";
@@ -71,24 +72,19 @@
     const metalsList = document.getElementById("metalsList");
     const metals = ["Gold","Silver","Platinum","Copper","Oil","Natural Gas"];
 
-    async function fetchMetalPrices() {
-      try {
-        metalsList.innerHTML = "";
-        metals.forEach(name => {
-          const price = (Math.random()*2000).toFixed(2); // سعر تجريبي
-          const card = document.createElement("div");
-          card.className = "card metal";
-          card.innerHTML = `<h3>${name}</h3><p>Price: $${price}</p>`;
-          metalsList.appendChild(card);
-        });
-      } catch (error) {
-        metalsList.innerHTML = "<p>Failed to load data</p>";
-        console.error(error);
-      }
+    function displayMetalPrices() {
+      metalsList.innerHTML = "";
+      metals.forEach(name => {
+        const price = (Math.random()*2000).toFixed(2); // مؤقت / تجريبي
+        const card = document.createElement("div");
+        card.className = "card metal";
+        card.innerHTML = `<h3>${name}</h3><p>Price: $${price}</p>`;
+        metalsList.appendChild(card);
+      });
     }
 
-    fetchMetalPrices();
-    setInterval(fetchMetalPrices, 60000);
+    displayMetalPrices();
+    setInterval(displayMetalPrices, 60000); // تحديث كل دقيقة
   </script>
 
 </body>
