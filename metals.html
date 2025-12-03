@@ -1,86 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metals & Energy — PricesToday Hub</title>
-    <link rel="stylesheet" href="site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metals & Energy — PricesToday Hub</title>
+  <meta name="description" content="Live prices for metals and energy commodities like Gold, Silver, Platinum, Copper, Oil, Natural Gas.">
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PricesToday Hub - Metals & Energy">
+  <meta property="og:description" content="Live prices for metals and energy commodities like Gold, Silver, Platinum, Copper, Oil, Natural Gas.">
+  <meta property="og:url" content="https://khalesalh-web.github.io/Pricestoday-hub/metals.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="site.css">
 </head>
 <body class="theme-metal">
 
-    <div class="navbar">
-        <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
-
-        <div class="nav-links">
-            <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
-            <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
-            <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
-            <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
-            <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
-            <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
-        </div>
-
-        <div class="lang-btn" id="langToggle">AR</div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
+      <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
+      <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
+      <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
+      <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
     </div>
+    <div class="lang-btn" id="langToggle">AR</div>
+  </div>
 
-    <main class="container">
-        <h2 data-en="Metals & Energy" data-ar="المعادن والطاقة">Metals & Energy</h2>
-        <p data-en="Gold, Silver, Platinum, Copper, Oil, Gas..."
-           data-ar="الذهب، الفضة، البلاتين، النحاس، النفط، الغاز...">
-            Gold, Silver, Platinum, Copper, Oil, Gas...
-        </p>
+  <!-- Main content -->
+  <main>
+    <h2 data-en="Metals & Energy" data-ar="المعادن والطاقة">Metals & Energy</h2>
+    <p data-en="Gold, Silver, Platinum, Copper, Oil, Gas..."
+       data-ar="الذهب، الفضة، البلاتين، النحاس، النفط، الغاز...">
+      Gold, Silver, Platinum, Copper, Oil, Gas...
+    </p>
 
-          <section class="list-grid" id="metalsList">
-    <!-- سيتم ملء المعادن تلقائيًا هنا -->
-</section> 
+    <section class="list-grid" id="metalsList">
+      <!-- سيتم ملء المعادن تلقائيًا هنا -->
+    </section>
+  </main>
 
-        <footer class="footer">
-            <p>© PricesToday Hub</p>
-        </footer>
-    </main>
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 PricesToday Hub — <a href="privacy.html">Privacy</a>
+  </footer>
 
-    <script>
-        const btn = document.getElementById("langToggle");
-        let lang = "en";
-        btn.onclick = () => {
-            lang = lang === "en" ? "ar" : "en";
-            btn.textContent = lang === "en" ? "AR" : "EN";
-            document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
-            document.querySelectorAll("[data-en]").forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
-        }
-    </script> 
-     
- <script>
-const metalsList = document.getElementById("metalsList");
+  <!-- Language toggle script -->
+  <script>
+    const btn = document.getElementById("langToggle");
+    let lang = "en";
+    btn.onclick = () => {
+      lang = lang === "en" ? "ar" : "en";
+      btn.textContent = lang === "en" ? "AR" : "EN";
+      document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-en]").forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+  </script>
 
-// قائمة المعادن والمواد الطاقية
-const metals = ["Gold","Silver","Platinum","Copper","Oil","Natural Gas"];
+  <!-- Metals Prices script -->
+  <script>
+    const metalsList = document.getElementById("metalsList");
+    const metals = ["Gold","Silver","Platinum","Copper","Oil","Natural Gas"];
 
-// دالة لجلب الأسعار (مثال تجريبي باستخدام أسعار افتراضية)
-async function fetchMetalPrices() {
-    try {
-        metalsList.innerHTML = ""; // تنظيف القسم قبل العرض
-
+    async function fetchMetalPrices() {
+      try {
+        metalsList.innerHTML = "";
         metals.forEach(name => {
-            const price = (Math.random()*2000).toFixed(2); // سعر تجريبي
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `<h3>${name}</h3><p>Price: $${price}</p>`;
-            metalsList.appendChild(card);
+          const price = (Math.random()*2000).toFixed(2); // سعر تجريبي
+          const card = document.createElement("div");
+          card.className = "card metal";
+          card.innerHTML = `<h3>${name}</h3><p>Price: $${price}</p>`;
+          metalsList.appendChild(card);
         });
-    } catch (error) {
+      } catch (error) {
         metalsList.innerHTML = "<p>Failed to load data</p>";
         console.error(error);
+      }
     }
-}
 
-// أول مرة تحميل
-fetchMetalPrices();
+    fetchMetalPrices();
+    setInterval(fetchMetalPrices, 60000);
+  </script>
 
-// تحديث كل دقيقة
-setInterval(fetchMetalPrices, 60000);
-</script>
 </body>
 </html>
