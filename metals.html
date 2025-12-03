@@ -86,6 +86,32 @@
     displayMetalPrices();
     setInterval(displayMetalPrices, 60000); // تحديث كل دقيقة
   </script>
+   <script>
+const metalsList = document.getElementById("metalsList");
+const metals = ["XAU","XAG","WTICOUSD","NGUSD"]; 
+
+async function fetchMetalPrices() {
+  try {
+    const res = await fetch(`https://metals-api.com/api/latest?access_key=YOUR_API_KEY&base=USD&symbols=${metals.join(",")}`);
+    const data = await res.json();
+    metalsList.innerHTML = "";
+
+    metals.forEach(code => {
+      const price = data.rates[code].toLocaleString();
+      const card = document.createElement("div");
+      card.className = "card metal";
+      card.innerHTML = `<h3>${code}</h3><p>USD ${price}</p>`;
+      metalsList.appendChild(card);
+    });
+  } catch (error) {
+    metalsList.innerHTML = "<p>Failed to load data</p>";
+    console.error(error);
+  }
+}
+
+fetchMetalPrices();
+setInterval(fetchMetalPrices, 60000);
+</script>
 
 </body>
 </html>
