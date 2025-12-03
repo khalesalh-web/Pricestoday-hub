@@ -3,127 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PricesToday Hub — Live Prices</title>
-  <meta name="description" content="Live raw materials, metals, forex, and crypto prices — updated automatically.">
-
+  <title>PricesToday Hub — Live Markets</title>
+  <meta name="description" content="Live prices for crypto, fiat currencies, metals, and raw materials — updated automatically.">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="PricesToday Hub">
-  <meta property="og:description" content="Live updated prices for raw materials, metals, forex, and crypto.">
-  <meta property="og:type" content="website">
-
-  <!-- CSS خارجي -->
   <link rel="stylesheet" href="site.css">
 
-  <!-- تحسينات CSS داخلية -->
   <style>
-    body {
-      margin: 0;
-      background: #0d0d0d;
-      color: white;
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-    }
-
-    /* ========== NAVBAR ========== */
-    .navbar {
-      background: #111;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #222;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #f0c130;
-    }
-
-    .nav-links a {
-      margin: 5px 10px;
-      color: #ccc;
-      text-decoration: none;
-      font-size: 15px;
-    }
-
-    .nav-links a:hover {
-      color: #f0c130;
-    }
-
-    .lang-btn {
-      background: #f0c130;
-      padding: 5px 12px;
-      border-radius: 6px;
-      color: black;
-      cursor: pointer;
-      font-weight: bold;
+    /* ====== Time Display ====== */
+    .time-display {
       font-size: 14px;
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      text-align: center;
-      padding: 50px 15px;
-    }
-
-    .hero h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 16px;
-      color: #bbb;
-    }
-
-    /* ========== DATE & TIME ========== */
-    #datetime {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 17px;
-      color: #f0c130;
-      font-weight: bold;
-    }
-
-    /* ========== FOOTER ========== */
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 12px 0;
-      margin-top: 30px;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: #f0c130;
-      text-decoration: none;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media(min-width: 768px) {
-      .hero h1 { font-size: 34px; }
-      .hero p { font-size: 18px; }
-      .nav-links a { margin: 0 12px; font-size: 16px; }
-    }
-
-    @media(min-width: 1024px) {
-      .hero h1 { font-size: 38px; }
-      .hero p { font-size: 20px; }
+      color: #ccc;
+      margin-left: 15px;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <div class="navbar">
     <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
-
     <div class="nav-links">
       <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
       <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
@@ -132,37 +31,59 @@
       <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
       <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
     </div>
-
-    <div class="lang-btn" id="langToggle">AR</div>
+    <div>
+      <span class="time-display" id="currentTime"></span>
+      <div class="lang-btn" id="langToggle">AR</div>
+    </div>
   </div>
 
-  <div class="lang-btn" id="langToggle">AR</div>
-<div id="dateTime" style="color:#f0c130; font-weight:bold; font-size:14px;"></div>
-  <!-- HERO -->
+  <!-- Hero Section -->
   <div class="hero">
-    <h1 data-en="Live Prices for Everything" data-ar="الأسعار الحية لكل شيء">
-      Live Prices for Everything
-    </h1>
-    <p data-en="Raw materials, metals, forex, crypto — updated automatically."
-       data-ar="المواد الأولية، المعادن، العملات النقدية والرقمية — تحديث تلقائي.">
-      Raw materials, metals, forex, crypto — updated automatically.
+    <h1 data-en="Live Prices for Everything" data-ar="الأسعار الحية لكل شيء">Live Prices for Everything</h1>
+    <p data-en="Crypto, fiat, metals, raw materials — updated automatically."
+       data-ar="العملات الرقمية، العملات النقدية، المعادن، المواد الأولية — تحديث تلقائي.">
+       Crypto, fiat, metals, raw materials — updated automatically.
     </p>
   </div>
 
-  <!-- DATE & TIME -->
-  <div id="datetime">Loading...</div>
+  <!-- Main Content -->
+  <main>
 
-  <!-- FOOTER -->
-  <footer>
+    <!-- Crypto -->
+    <section>
+      <h2 data-en="Cryptocurrencies" data-ar="العملات الرقمية">Cryptocurrencies</h2>
+      <div class="list-grid" id="cryptoList"></div>
+    </section>
+
+    <!-- Fiat -->
+    <section>
+      <h2 data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat Currencies</h2>
+      <div class="list-grid" id="fiatList"></div>
+    </section>
+
+    <!-- Metals -->
+    <section>
+      <h2 data-en="Metals" data-ar="المعادن">Metals</h2>
+      <div class="list-grid" id="metalsList"></div>
+    </section>
+
+    <!-- Raw Materials -->
+    <section>
+      <h2 data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</h2>
+      <div class="list-grid" id="materialsList"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     &copy; 2025 PricesToday Hub — <a href="privacy.html">Privacy</a>
   </footer>
 
-  <!-- LANGUAGE + DATE/TIME SCRIPT -->
+  <!-- Language Toggle Script -->
   <script>
-    /* ========== LANGUAGE TOGGLE ========== */
     const btn = document.getElementById("langToggle");
     let lang = "en";
-
     btn.onclick = () => {
       lang = lang === "en" ? "ar" : "en";
       btn.textContent = lang === "en" ? "AR" : "EN";
@@ -170,37 +91,119 @@
       document.querySelectorAll("[data-en]").forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
       });
-    };
-
-    /* ========== DATE & TIME AUTO UPDATE ========== */
-    function updateDateTime() {
-      const now = new Date();
-      let time = now.toLocaleTimeString('ar-DZ', { hour12: false });
-      let date = now.toLocaleDateString('ar-DZ');
-
-      document.getElementById("datetime").innerHTML =
-        (lang === "ar" ? "التاريخ: " : "Date: ") + date +
-        (lang === "ar" ? " — الوقت: " : " — Time: ") + time;
     }
+  </script>
 
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-  </script> 
+  <!-- Current Time -->
   <script>
-  const dateTimeDiv = document.getElementById("dateTime");
+    const timeEl = document.getElementById("currentTime");
+    function updateTime() {
+      const now = new Date();
+      timeEl.textContent = now.toLocaleString();
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
 
-  function updateDateTime() {
-    const now = new Date();
-    // صياغة التاريخ والوقت
-    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    const dateStr = now.toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-US', options);
-    const timeStr = now.toLocaleTimeString(lang === 'ar' ? 'ar-EG' : 'en-US');
-    dateTimeDiv.textContent = `${dateStr} - ${timeStr}`;
-  }
+  <!-- Crypto Prices -->
+  <script>
+    const cryptoList = document.getElementById("cryptoList");
+    const cryptos = ["bitcoin", "ethereum", "binancecoin", "cardano", "solana"];
+    async function fetchCrypto() {
+      try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptos.join(",")}&vs_currencies=usd`);
+        const data = await res.json();
+        cryptoList.innerHTML = "";
+        cryptos.forEach(id => {
+          const price = data[id].usd.toFixed(2);
+          const card = document.createElement("div");
+          card.className = "card crypto";
+          card.innerHTML = `<h3>${id.charAt(0).toUpperCase()+id.slice(1)}</h3><p>USD ${price}</p>`;
+          cryptoList.appendChild(card);
+        });
+      } catch(e) {
+        cryptoList.innerHTML = "<p>Failed to load data</p>";
+      }
+    }
+    fetchCrypto();
+    setInterval(fetchCrypto, 60000);
+  </script>
 
-  updateDateTime();
-  setInterval(updateDateTime, 1000); // تحديث كل ثانية
-</script>
+  <!-- Fiat Prices -->
+  <script>
+    const fiatList = document.getElementById("fiatList");
+    const currencies = ["USD","EUR","GBP","JPY","CAD","AUD","CNY","CHF"];
+    async function fetchFiat() {
+      try {
+        const res = await fetch('https://api.exchangerate.host/latest?base=USD');
+        const data = await res.json();
+        fiatList.innerHTML = "";
+        currencies.forEach(code => {
+          const price = data.rates[code].toFixed(4);
+          const card = document.createElement("div");
+          card.className = "card fiat";
+          card.innerHTML = `<h3>${code}</h3><p>1 USD = ${price} ${code}</p>`;
+          fiatList.appendChild(card);
+        });
+      } catch(e) {
+        fiatList.innerHTML = "<p>Failed to load data</p>";
+      }
+    }
+    fetchFiat();
+    setInterval(fetchFiat, 60000);
+  </script>
+
+  <!-- Metals Prices -->
+  <script>
+    const metalsList = document.getElementById("metalsList");
+    const metals = ["XAU","XAG","XPT","XPD"]; // الذهب، الفضة، البلاتين، البالاديوم
+    const metalsApiKey = "YOUR_METALS_API_KEY"; // ضع مفتاحك هنا
+
+    async function fetchMetals() {
+      try {
+        const res = await fetch(`https://metals-api.com/api/latest?access_key=${metalsApiKey}&base=USD&symbols=${metals.join(",")}`);
+        const data = await res.json();
+        metalsList.innerHTML = "";
+        metals.forEach(symbol => {
+          const price = data.rates[symbol].toFixed(2);
+          const card = document.createElement("div");
+          card.className = "card metal";
+          card.innerHTML = `<h3>${symbol}</h3><p>USD ${price}</p>`;
+          metalsList.appendChild(card);
+        });
+      } catch(e) {
+        metalsList.innerHTML = "<p>Failed to load data</p>";
+      }
+    }
+    fetchMetals();
+    setInterval(fetchMetals, 60000);
+  </script>
+
+  <!-- Raw Materials Prices -->
+  <script>
+    const materialsList = document.getElementById("materialsList");
+    const materials = ["WHEAT","SUGAR","COFFEE","CORN","SOY","COTTON","OIL","NG"];
+    const commoditiesApiKey = "YOUR_COMMODITIES_API_KEY"; // ضع مفتاحك هنا
+
+    async function fetchMaterials() {
+      try {
+        const res = await fetch(`https://commodities-api.com/api/latest?access_key=${commoditiesApiKey}&base=USD&symbols=${materials.join(",")}`);
+        const data = await res.json();
+        materialsList.innerHTML = "";
+        materials.forEach(symbol => {
+          const price = data.data[symbol].value.toFixed(2);
+          const card = document.createElement("div");
+          card.className = "card material";
+          card.innerHTML = `<h3>${symbol}</h3><p>USD ${price}</p>`;
+          materialsList.appendChild(card);
+        });
+      } catch(e) {
+        materialsList.innerHTML = "<p>Failed to load data</p>";
+      }
+    }
+    fetchMaterials();
+    setInterval(fetchMaterials, 60000);
+  </script>
 
 </body>
 </html>
