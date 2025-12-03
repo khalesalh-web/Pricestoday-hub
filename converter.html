@@ -1,112 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Converter — PricesToday Hub</title>
-    <link rel="stylesheet" href="site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converter — PricesToday Hub</title>
+  <meta name="description" content="Convert between currencies, crypto, metals, and raw materials automatically.">
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PricesToday Hub - Converter">
+  <meta property="og:description" content="Convert between currencies, crypto, metals, and raw materials automatically.">
+  <meta property="og:url" content="https://khalesalh-web.github.io/Pricestoday-hub/converter.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="site.css">
 </head>
 <body class="theme-converter">
 
-    <div class="navbar">
-        <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
-
-        <div class="nav-links">
-            <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
-            <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
-            <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
-            <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
-            <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
-            <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
-        </div>
-
-        <div class="lang-btn" id="langToggle">AR</div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo" data-en="PricesToday Hub" data-ar="مركز أسعار اليوم">PricesToday Hub</div>
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="materials.html" data-en="Raw Materials" data-ar="المواد الأولية">Raw Materials</a>
+      <a href="metals.html" data-en="Metals" data-ar="المعادن">Metals</a>
+      <a href="fiat.html" data-en="Fiat Currencies" data-ar="العملات النقدية">Fiat</a>
+      <a href="crypto.html" data-en="Crypto" data-ar="العملات الرقمية">Crypto</a>
+      <a href="converter.html" data-en="Converter" data-ar="المحوّل">Converter</a>
     </div>
+    <div class="lang-btn" id="langToggle">AR</div>
+  </div>
 
-    <main class="container">
-        <h2 data-en="Converter" data-ar="المحوّل">Converter</h2>
-        <p data-en="Convert between currencies, crypto, metals, and raw materials automatically."
-           data-ar="تحويل بين العملات، العملات الرقمية، المعادن، والمواد الأولية تلقائيًا.">
-            Convert between currencies, crypto, metals, and raw materials automatically.
-        </p>
+  <!-- Main content -->
+  <main>
+    <h2 data-en="Converter" data-ar="المحوّل">Converter</h2>
+    <p data-en="Convert between currencies, crypto, metals, and raw materials automatically."
+       data-ar="تحويل بين العملات، العملات الرقمية، المعادن، والمواد الأولية تلقائيًا.">
+      Convert between currencies, crypto, metals, and raw materials automatically.
+    </p>
 
-        <section class="container" id="converterSection">
-    <h3>Converter</h3>
-    <label>From:</label>
-    <select id="fromCurrency"></select>
-    <label>To:</label>
-    <select id="toCurrency"></select>
-    <label>Amount:</label>
-    <input type="number" id="amount" value="1">
-    <button id="convertBtn">Convert</button>
-    <p id="result">Result will appear here</p>
-</section>
- 
-        <footer class="footer">
-            <p>© PricesToday Hub</p>
-        </footer>
-    </main>
+    <section id="converterSection">
+      <h3 data-en="Converter" data-ar="المحوّل">Converter</h3>
+      <label data-en="From:" data-ar="من:">From:</label>
+      <select id="fromCurrency"></select>
 
-    <script>
-        const btn = document.getElementById("langToggle");
-        let lang = "en";
-        btn.onclick = () => {
-            lang = lang === "en" ? "ar" : "en";
-            btn.textContent = lang === "en" ? "AR" : "EN";
-            document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
-            document.querySelectorAll("[data-en]").forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
-        }
-    </script>
-     <script>
-// العملات والمواد اللي نريدها للتحويل
-const allCurrencies = ["USD","EUR","GBP","JPY","BTC","ETH","Gold","Silver","Wheat","Sugar"];
+      <label data-en="To:" data-ar="إلى:">To:</label>
+      <select id="toCurrency"></select>
 
-// ربط عناصر HTML
-const fromSelect = document.getElementById("fromCurrency");
-const toSelect = document.getElementById("toCurrency");
-const amountInput = document.getElementById("amount");
-const convertBtn = document.getElementById("convertBtn");
-const resultP = document.getElementById("result");
+      <label data-en="Amount:" data-ar="المبلغ:">Amount:</label>
+      <input type="number" id="amount" value="1">
 
-// ملء القوائم
-allCurrencies.forEach(c => {
-    const option1 = document.createElement("option");
-    option1.value = c; option1.textContent = c;
-    fromSelect.appendChild(option1);
+      <button id="convertBtn" data-en="Convert" data-ar="تحويل">Convert</button>
+      <p id="result" data-en="Result will appear here" data-ar="ستظهر النتيجة هنا">Result will appear here</p>
+    </section>
+  </main>
 
-    const option2 = document.createElement("option");
-    option2.value = c; option2.textContent = c;
-    toSelect.appendChild(option2);
-});
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 PricesToday Hub — <a href="privacy.html">Privacy</a>
+  </footer>
 
-// دالة تحويل بسيطة تجريبية
-async function convert() {
-    const from = fromSelect.value;
-    const to = toSelect.value;
-    const amount = parseFloat(amountInput.value);
+  <!-- Language toggle script -->
+  <script>
+    const btn = document.getElementById("langToggle");
+    let lang = "en";
+    btn.onclick = () => {
+      lang = lang === "en" ? "ar" : "en";
+      btn.textContent = lang === "en" ? "AR" : "EN";
+      document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-en]").forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+  </script>
 
-    // تحويل تجريبي: لو العملات نفسها = 1:1
-    let rate = 1;
+  <!-- Converter script -->
+  <script>
+    const allCurrencies = ["USD","EUR","GBP","JPY","BTC","ETH","Gold","Silver","Wheat","Sugar"];
+    const fromSelect = document.getElementById("fromCurrency");
+    const toSelect = document.getElementById("toCurrency");
+    const amountInput = document.getElementById("amount");
+    const convertBtn = document.getElementById("convertBtn");
+    const resultP = document.getElementById("result");
 
-    // بعض القيم التجريبية (لاحقًا يمكن ربط API حقيقية)
-    const prices = {
+    allCurrencies.forEach(c => {
+      const option1 = document.createElement("option");
+      option1.value = c; option1.textContent = c;
+      fromSelect.appendChild(option1);
+
+      const option2 = document.createElement("option");
+      option2.value = c; option2.textContent = c;
+      toSelect.appendChild(option2);
+    });
+
+    async function convert() {
+      const from = fromSelect.value;
+      const to = toSelect.value;
+      const amount = parseFloat(amountInput.value);
+      const prices = {
         "USD":1,"EUR":1.1,"GBP":1.25,"JPY":0.009,"BTC":30000,"ETH":2000,
         "Gold":1800,"Silver":25,"Wheat":5,"Sugar":0.8
-    };
-
-    if(prices[from] && prices[to]){
-        rate = prices[to]/prices[from];
+      };
+      let rate = 1;
+      if(prices[from] && prices[to]) rate = prices[to]/prices[from];
+      const result = (amount*rate).toFixed(4);
+      resultP.textContent = `${amount} ${from} = ${result} ${to}`;
     }
 
-    const result = (amount*rate).toFixed(4);
-    resultP.textContent = `${amount} ${from} = ${result} ${to}`;
-}
-
-// حدث الضغط على زر التحويل
-convertBtn.addEventListener("click", convert);
-</script>
-
-</body>
-</html>
+    convertBtn.addEventListener("click", convert);
+  </
